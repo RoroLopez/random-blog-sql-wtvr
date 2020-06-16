@@ -7,6 +7,7 @@ const Navigation = () => {
     return (
         <div>
             <Link to={ROUTES.SIGNUP}></Link>
+            <Link to={ROUTES.ACCOUNT}></Link>
         </div>
     );
 }
