@@ -12,16 +12,16 @@ var app = express();
 
 //mysql connection
 var con = mysql.createConnection({
-  host:"localhost",
+  host: "localhost",
   database: "blog",
   port: "3306",
-  username: "root",
+  user: "root",
   password: "admlnx1"
 });
 
 con.connect((err) => {
   if (err) console.log(err);
-  else console.log('mysql db connected...');
+  //else console.log('mysql db connected...');
 });
 
 // view engine setup

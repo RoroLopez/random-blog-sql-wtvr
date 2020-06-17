@@ -70,7 +70,7 @@ class SignUpForm extends Component {
     
                     <div className="row justify-content-center">
                         <div className="col-2">
-                            <button className="btn btn-outline-primary my-4 buttons" disabled={isInvalid}type="submit">Sign in</button>
+                            <button className="btn btn-outline-primary my-4 buttons" type="submit">Sign in</button>
                         </div>
                     </div>
                     {error && <p>{error.message}</p>}
