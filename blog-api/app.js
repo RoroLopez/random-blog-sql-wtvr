@@ -21,7 +21,7 @@ var con = mysql.createConnection({
 
 con.connect((err) => {
   if (err) console.log(err);
-  //else console.log('mysql db connected...');
+  else console.log('mysql db connected...');
 });
 
 // view engine setup
