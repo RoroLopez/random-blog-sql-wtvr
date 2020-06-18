@@ -1,17 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mysql = require('mysql');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let mysql = require('mysql');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let userRouter = require('./routes/mysql_operations');
+//let usersRouter = require('./routes/users');
 
-var app = express();
+let app = express();
 
 //mysql connection
-var con = mysql.createConnection({
+let con = mysql.createConnection({
   host: "localhost",
   database: "blog",
   port: "3306",
@@ -21,8 +22,11 @@ var con = mysql.createConnection({
 
 con.connect((err) => {
   if (err) console.log(err);
-  else console.log('mysql db connected...');
+  else console.log('mysql connected...');
 });
+
+//export for mysql operations in other routes
+module.exports.connection = con;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
+//app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
