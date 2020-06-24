@@ -14,8 +14,8 @@ const SignUpPage = () => (
 
 const INITIAL_STATE = {
     username: "",
-    password: "",
-    password: "",
+    password1: "",
+    password2: "",
     error: null
 };
 
@@ -27,7 +27,18 @@ class SignUpForm extends Component {
     }
 
     onSubmit = event => {
-
+        
+        fetch('http://localhost:3001/user/insertCredentials', {
+            method: 'post',
+            headers: {
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then(res => {
+            console.log(res.json())
+        });
     }
 
     onChange = event => {
@@ -49,7 +60,7 @@ class SignUpForm extends Component {
             username === '';
 
         return (
-                <form action="">
+                <form onSubmit={ this.onSubmit }>
                     <div className="row">
                         <div className="col-12">
                                 <label className="form-group d-flex" htmlFor="username">Username</label>
@@ -69,8 +80,8 @@ class SignUpForm extends Component {
                     </div>
     
                     <div className="row justify-content-center">
-                        <div className="col-2">
-                            <button className="btn btn-outline-primary my-4 buttons" type="submit">Sign in</button>
+                        <div className="col-2 col-sm-4">
+                            <button className="btn btn-outline-primary my-4 buttons" type="submit">Sign up</button>
                         </div>
                     </div>
                     {error && <p>{error.message}</p>}

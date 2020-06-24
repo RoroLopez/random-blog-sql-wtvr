@@ -1,12 +1,12 @@
 let createError = require('http-errors');
 let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
+let cors  = require('cors');
 let logger = require('morgan');
 let mysql = require('mysql');
 
 let indexRouter = require('./routes/index');
-let userRouter = require('./routes/mysql_operations');
+let userRouter = require('./routes/mysql/mysql');
 //let usersRouter = require('./routes/users');
 
 let app = express();
@@ -25,22 +25,15 @@ con.connect((err) => {
   else console.log('mysql connected...');
 });
 
-//export for mysql operations in other routes
 module.exports.connection = con;
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-//app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

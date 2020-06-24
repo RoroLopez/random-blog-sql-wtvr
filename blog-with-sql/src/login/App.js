@@ -25,21 +25,21 @@ class LoginForm extends Component {
             
             <form action="">
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col col-lg-6 col-12">
                         <label className="form-group d-flex" htmlFor="username">Username</label>
                         <input type="text" id="username" className="form-control mb-4" placeholder="Username" />
                     </div>
-                    <div className="col-6">
+                    <div className="col col-lg-6 col-12">
                         <label className="form-group d-flex" htmlFor="password">Password</label>
                         <input type="password" id="password" className="form-control mb-4" placeholder="Password" />
                     </div>
                 </div>
                 
                 <div className="row justify-content-center">
-                    <div className="col-2">
+                    <div className="col col-lg-2 col-md-4 col-sm-6 col-12">
                         <button className="btn btn-outline-primary my-4 buttons" type="submit">Sign in</button>
                     </div>
-                    <div className="col-2">
+                    <div className="col col-lg-2 col-md-4 col-sm-6 col-12">
                         <SignUpLink />
                     </div>
                 </div>
